@@ -152,18 +152,45 @@ function selectUser(){
     let userList = [];
     function listarUsuarios() {
         for (let i = 0; i < usuarios.length; i++) {
-        let userList2 = (i+1 + '. ' + usuarios[i][0] + ' ' + usuarios[i][1]);
-        userList.push(userList2);
+            let arrayUsuario = Object.values(usuarios[i]);
+            let userList2 = (i+1 + '. ' + arrayUsuario[0] + ' ' + arrayUsuario[1]);
+            userList.push(userList2);
         }
         return userList;
     }
-    userSelect = prompt("Por favor seleccione un numero de usuario\n" + listarUsuarios());
+    console.log(listarUsuarios());
+    userSelect = prompt("Por favor seleccione un numero de usuario");
     return userSelect;
 }
 
 //Funcion para seleccionar productos:
+let pedido1 = []
 function selectProduct(){
-
+    let productList = [];
+    let back = false;
+    let pedido = [];
+    while (back === false) {
+        console.clear();
+        function listarProductos() {
+            for (let i = 0; i < productos.length; i++) {
+                let arrayProducto = Object.values(productos[i])
+                let productList2 = (i+1 + '. ' + arrayProducto[0] + ' ' + arrayProducto[1]);
+                productList.push(productList2);
+            }
+            return productList;
+        }
+        console.log(listarProductos());
+        productList = [];
+        let productSelect = prompt("Por favor seleccione un numero de un producto o escriba Atras para volver al menu anterior").toLowerCase();
+        if (productSelect == "atras"){
+            back =   true;
+            return back
+        } else {
+            pedido.push(productos[productSelect-1][0]);
+        }
+    }
+    pedido1 = pedido;
+    return pedido1
 }
 
 //Funcion para confirmar Pedido:
